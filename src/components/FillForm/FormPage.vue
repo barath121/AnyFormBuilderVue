@@ -4,7 +4,7 @@
   >
     <h1 class="text-3xl break-all overflow-auto hidescroll">{{page.question}}{{isRequired()}}</h1>
     <input
-      class="w-3/5 questionInput p-2"
+      class="w-3/5 questionInput "
       v-if="page.pageType == 'Small Text'"
       :name="page.fieldName"
       :pattern="page.regex"
@@ -24,7 +24,7 @@
       class="flex flex-col overflow-y-auto hidescroll"
       v-else-if="page.pageType == 'Check Box'"
     >
-      <div v-for="(choice, index) in page.choices" :key="choice + index">
+      <div v-for="(choice, index) in page.choices" :key="choice + index" class="p-1">
        <input  type="checkbox" :name="page.fieldName" :value="choice" :id="page.fieldName+index"/>
         <label class="overflow-auto hidescroll break-all">{{ choice }}</label>
       </div>
@@ -33,7 +33,7 @@
       class="flex flex-col overflow-y-auto hidescroll"
       v-else-if="page.pageType == 'Radio Button'"
     >
-      <div v-for="(choice, index) in page.choices" :key="choice + index">
+      <div v-for="(choice, index) in page.choices" :key="choice + index" class="p-1">
         <input  type="radio" :name="page.fieldName" :value="choice" :id="page.fieldName+index" v-if="index==0"  :required="page.isRequired"/>
         <input  type="radio" :name="page.fieldName"  :value="choice" :id="page.fieldName+index" v-else/>
         <label class="overflow-auto hidescroll break-all">{{ choice }}</label>

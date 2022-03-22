@@ -7,6 +7,7 @@ import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
 import ForgotPassword from "../components/ForgotPassword.vue";
 import ResetPassword from "../components/ResetPassword.vue";
+import VerifyUser from "../components/VerifyUser.vue";
 const history = createWebHistory();
 const router = createRouter({
     history,
@@ -46,6 +47,10 @@ const router = createRouter({
         {
             path : '/resetpassword/:token',
             component : ResetPassword
+        },
+        {
+            path : '/verifyuser/:id',
+            component : VerifyUser
         }
     ]
 })

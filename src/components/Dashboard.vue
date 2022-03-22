@@ -37,11 +37,12 @@
   <div class="flex flex-col my-2">
     <div class="flex borderBottom place-content-between">
       <div class="ml-2">
-        <a href="./dashboard.html"><h1>AnyFormBuilder</h1></a>
+        <h1>AnyFormBuilder</h1>
       </div>
       <div class="flex mr-2 place-content-between">
           <img src="https://avatars.githubusercontent.com/u/42098783?v=4" class="h-8 rounded-full mb-1">
-      <a href="./login.html"><h1 class="my-1">Barath</h1></a>
+          <a href="./login.html"><h1 class="my-1">Barath</h1></a>
+          <button class="navbuttons rounded ml-2 mb-2" @click="logout()">Logout</button>
       </div>
     </div>
   </div>
@@ -212,6 +213,7 @@ export default {
         .then(async (result)=>{
           let formUpdatedData = await result.json();
           if(formUpdatedData.message == "Form Updated Sucessfully"){
+              this.closeModal();
               this.displayToast("success","The Form has been renamed")
               this.forms[this.selectedIndex].title = this.currentTitle;
           }else{
@@ -298,6 +300,11 @@ export default {
         ],
       });
     },
+    logout(){
+      localStorage.setItem("userToken",null);
+      this.displayToast("success","User has been logged out.")
+      this.$router.push("/login");
+    }
   },
   mounted(){
     this.checkIfUserLoggedIn();

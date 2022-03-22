@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen-94">
+  <div class="flex flex-col h-screen">
     <Navbar />
     <div class="flex flex-row h-full">
       <div class="flex border" id="formPagesListHolder">
