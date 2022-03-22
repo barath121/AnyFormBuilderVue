@@ -113,7 +113,7 @@ export default {
       newFormTitle : "",
       currentTitle: "",
       selectedIndex: 0,
-      forms: "",
+      forms: [],
       searchTitle : "",
       sortBy : "updatedAt" 
 
@@ -246,6 +246,31 @@ export default {
             this.displayToast("error","Some Internal Error");
         })
     },
+    getFormResponses(index){
+      console.log(this.forms[index]._id)
+      fetch(`${ import.meta.env.VITE_API_URL}/form/getformresponses/${this.forms[index]._id}`, {
+            method: "GET",
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization" : "Bearer "+localStorage.getItem("userToken"),
+            },
+        })
+        .then(async (result)=>{
+          console.log(result.status)
+          if(result.status == 204){
+            this.displayToast("info","There is no responses for this form yet")
+            return;
+          }else
+          result.blob().then((xlsxfile) => {
+            var a = document.createElement("a");
+            a.href = window.URL.createObjectURL(xlsxfile);
+            a.download = this.forms[index].title+".xlsx";
+            a.click(); 
+          })
+        }).catch(err=>{
+            this.displayToast("error","Some Internal Error");
+        })
+    },
     onContextMenu(e, index) {
       e.preventDefault();
       this.$contextmenu({
@@ -263,6 +288,12 @@ export default {
             onClick: () => {
                this.deleteForm(index);
             },
+          },
+          {
+          label: "Get Responses",
+          onClick: () => {
+            this.getFormResponses(index);
+          },
           },
         ],
       });

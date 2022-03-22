@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen">
+  <div class="flex flex-col h-screen-94">
     <Navbar />
     <div class="flex flex-row h-full">
       <div class="flex border" id="formPagesListHolder">
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div
-        class="h-full borderTop colorWhite basis-11/12 overflow-y-scroll snap-y snap-mandatory hidescroll"
+        class="h-full borderTop colorWhite basis-11/12 overflow-y-scroll snap-y snap-mandatory hidescroll borderBottom"
         id="formPagesHolder"
       >
         <Formpage :pages="pages" :selectedpage="selectedpage" v-if="isLoaded" />
@@ -169,7 +169,7 @@ export default {
               navigator.clipboard.writeText(
                 `${import.meta.env.VITE_CLIENT_URL}/fillform/${this.formID}`
               );
-              this.displayToast("success", "The Form Has Been Published");
+              this.displayToast("success", "The Form Has Been Published and The Link has Been Copied");
             } else {
               this.displayToast(
                 "success",

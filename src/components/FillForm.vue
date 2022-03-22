@@ -73,14 +73,14 @@ export default {
         }) 
         .then(async (result) => {
         this.formFilled = true;
+        localStorage[this.$route.params.id+"FilledForm"] = true;
         })
         .catch((err) => {
           this.displayToast("error", "Some Internal Error");
         });
-        // localStorage[this.$route.params.id+"FilledForm"] = true;
       },
       getPages() {
-      if(localStorage[this.$route.params.id+"FilledForm"] == true)
+      if(localStorage[this.$route.params.id+"FilledForm"])
         this.formFilled = true;
       fetch(
         `${import.meta.env.VITE_API_URL}/form/getpublishedpages/${
@@ -96,7 +96,6 @@ export default {
         .then(async (result) => {
           let forms = await result.json();
           this.pages = forms.formData.publishedPages;
-          this.formID = forms.formData._id;
         })
         .catch((err) => {
           this.displayToast("error", "Some Internal Error");
