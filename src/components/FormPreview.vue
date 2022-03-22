@@ -8,7 +8,7 @@
 </form>
 </template>
 <style>
-@import "./../assets/CSS/formbuilder.css";
+@import "./../assets/CSS/formBuilder.css";
 </style>
 <script>
 import Formpage from "./FormPreview/FormPage.vue";

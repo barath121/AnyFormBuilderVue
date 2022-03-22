@@ -47,7 +47,7 @@
   </div>
 </template>
 <style>
-@import "./../assets/CSS/formbuilder.css";
+@import "./../assets/CSS/formBuilder.css";
 </style>
 <script>
 import Navbar from "./Formbuilder/Navbar.vue";
