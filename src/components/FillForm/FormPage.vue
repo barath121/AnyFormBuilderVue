@@ -7,7 +7,6 @@
       class="w-3/5 questionInput "
       v-if="page.pageType == 'Small Text'"
       :name="page.fieldName"
-      :pattern="page.regex"
       :maxlength="page.maxCharacters"
       :id="page.fieldName"
       :required="page.isRequired"

@@ -41,7 +41,6 @@
         @changeChoices="pages[selectedpage].choices = $event"
         @changeIsRequired="pages[selectedpage].isRequired = $event"
         @changeMaxCharacters="pages[selectedpage].maxCharacters = $event"
-        @changeVerification="pages[selectedpage].regex = $event"
         @changeFieldName="pages[selectedpage].fieldName = $event"
       />
     </div>
@@ -49,7 +48,6 @@
 </template>
 <style>
 @import "./../assets/CSS/formbuilder.css";
-@import "./../assets/CSS/index.css";
 </style>
 <script>
 import Navbar from "./Formbuilder/Navbar.vue";

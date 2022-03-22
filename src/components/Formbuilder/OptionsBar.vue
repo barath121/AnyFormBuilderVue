@@ -81,25 +81,6 @@
           @input="changeMaxCharacters"
         />
       </div>
-      <div class="p-2 borderBottom" v-if="pageType=='Small Text'">
-        <div class="flex flex-row justify-between mb-2">
-          <label for="">Verification</label>
-          <input
-            type="checkbox"
-            id="verificationswitch"
-            class="switchcheckbox h-0 w-0 invisible"
-            v-model="hasVerification"
-            @change="changeVerification"
-          /><label
-            for="verificationswitch"
-            class="switchlabel cursor-pointer block rounded-full bg-rose-400 relative"
-          ></label>
-        </div>
-        <div class="flex flex-col justify-between">
-          <label for="" class="mb-2 hidden">Regex Expression</label>
-          <input class="w-full rounded p-1" placeholder="Regex Expression" v-model="regex" v-if="hasVerification" @input="changeVerification"/>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -117,8 +98,6 @@ export default {
     isRequired : this.pages[this.selectedpage].isRequired,
     maxCharacters : this.pages[this.selectedpage].maxCharacters,
     hasMaxCharaters : this.pages[this.selectedpage].maxCharacters>0,
-    regex : this.pages[this.selectedpage].regex,
-    hasVerification : this.pages[this.selectedpage].regex&&this.pages[this.selectedpage].regex.length > 0,
     fieldName : this.pages[this.selectedpage].fieldName
     }
   },
@@ -149,12 +128,6 @@ export default {
       else
       this.$emit("changeMaxCharacters", undefined);
     },
-    changeVerification(){
-      if(this.hasVerification)
-      this.$emit("changeVerification", this.regex);
-      else
-      this.$emit("changeVerification", undefined);
-    },
     convertArrayToCSV(arr){
       return arr.join(",");
     }
@@ -167,8 +140,6 @@ export default {
       this.isRequired = this.pages[this.selectedpage].isRequired;
       this.maxCharacters = this.pages[this.selectedpage].maxCharacters;
       this.hasMaxCharaters = this.maxCharacters>0;
-      this.regex = this.pages[this.selectedpage].regex;
-      this.hasVerification = this.regex&&this.regex.length > 0;
       this.fieldName = this.pages[this.selectedpage].fieldName
     }
   }

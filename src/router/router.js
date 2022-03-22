@@ -8,6 +8,7 @@ import Register from "../components/Register.vue";
 import ForgotPassword from "../components/ForgotPassword.vue";
 import ResetPassword from "../components/ResetPassword.vue";
 import VerifyUser from "../components/VerifyUser.vue";
+import PageNotFound from "../components/PageNotFound.vue";
 const history = createWebHistory();
 const router = createRouter({
     history,
@@ -51,6 +52,10 @@ const router = createRouter({
         {
             path : '/verifyuser/:id',
             component : VerifyUser
+        },
+        { 
+            path: "/:catchAll(.*)", 
+            component: PageNotFound 
         }
     ]
 })

@@ -9,7 +9,6 @@
 </template>
 <style>
 @import "./../assets/CSS/formbuilder.css";
-@import "./../assets/CSS/index.css";
 </style>
 <script>
 import Formpage from "./FormPreview/FormPage.vue";
