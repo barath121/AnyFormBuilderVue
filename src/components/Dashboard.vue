@@ -40,8 +40,6 @@
         <h1>AnyFormBuilder</h1>
       </div>
       <div class="flex mr-2 place-content-between">
-          <img src="https://avatars.githubusercontent.com/u/42098783?v=4" class="h-8 rounded-full mb-1">
-          <a href="./login.html"><h1 class="my-1">Barath</h1></a>
           <button class="navbuttons rounded ml-2 mb-2" @click="logout()">Logout</button>
       </div>
     </div>
