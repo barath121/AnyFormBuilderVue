@@ -172,8 +172,8 @@ export default {
               this.displayToast(
                 "success",
                 `The Form Has Been Published on :  ${
-                  import.meta.env.VITE_API_URL
-                }/form/${this.formID}`
+                  import.meta.env.VITE_CLIENT_URL
+                }/fillform/${this.formID}`
               );
             }
           } else {

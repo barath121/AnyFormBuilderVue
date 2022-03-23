@@ -262,13 +262,15 @@ export default {
           if(result.status == 204){
             this.displayToast("info","There is no responses for this form yet")
             return;
-          }else
+          }else if(result.status == 200)
           result.blob().then((xlsxfile) => {
             var a = document.createElement("a");
             a.href = window.URL.createObjectURL(xlsxfile);
             a.download = this.forms[index].title+".xlsx";
             a.click(); 
-          })
+          })else{
+            this.displayToast("error","Some Internal Error");
+          }
         }).catch(err=>{
             this.displayToast("error","Some Internal Error");
         })
