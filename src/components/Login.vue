@@ -72,7 +72,6 @@ export default {
         body: JSON.stringify(body),
     }).then(async (result)=>{
       let user = await  result.json();
-      console.log(user.message)
       if(user.message =="Signin Sucessful"){
         this.displayToast("success","Login Sucessful");
         localStorage.setItem("userToken",user.token);

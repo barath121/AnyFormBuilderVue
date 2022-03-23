@@ -108,7 +108,6 @@ export default {
           });
           this.pages = pagesData;
           this.formID = forms.formData._id;
-          console.log(this.pages);
           this.isLoaded = true;
         })
         .catch((err) => {
@@ -182,7 +181,6 @@ export default {
         })
         .catch((err) => {
           this.displayToast("error", "Some Internal Error");
-          console.log(err);
         });
     },
     saveForm() {

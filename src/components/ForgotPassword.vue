@@ -46,7 +46,6 @@ export default {
         },
         body: JSON.stringify(body),
     }).then(async (result)=>{
-      console.log(result)
       if(result.status == 200){
         this.displayToast("success","Please Check Your Email.");
       }else if(result.status ==304){

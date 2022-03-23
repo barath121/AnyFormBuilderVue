@@ -58,7 +58,6 @@ export default {
         },
         body: JSON.stringify(body),
     }).then(async (result)=>{
-      console.log(result)
       if(result.status == 200){
         this.displayToast("success","Password Has Been Changed");
         this.$router.push("/login");

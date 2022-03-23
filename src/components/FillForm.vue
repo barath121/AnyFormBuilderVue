@@ -66,7 +66,6 @@ export default {
               responseData.append(page.fieldName,inputValue[0].value);
         })
         responseData.append("formID",this.$route.params.id);
-        console.log(responseData)
         fetch(`${import.meta.env.VITE_API_URL}/form/saveformresponse`, {
             method: 'POST',
             body: responseData  

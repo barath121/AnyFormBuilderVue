@@ -17,7 +17,6 @@ export default {
         }
       )
         .then(async (result) => {
-            console.log(result)
             if(result.status == 204){
                 this.displayToast("error", "Your token has expired please register again.");
                 this.$router.push("/register");
@@ -30,7 +29,6 @@ export default {
             }
         })
         .catch((err) => {
-            console.log(err)
           this.displayToast("error", "Some Internal Error");
         });
     },

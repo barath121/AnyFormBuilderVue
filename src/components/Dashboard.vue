@@ -247,7 +247,6 @@ export default {
         })
     },
     getFormResponses(index){
-      console.log(this.forms[index]._id)
       fetch(`${ import.meta.env.VITE_API_URL}/form/getformresponses/${this.forms[index]._id}`, {
             method: "GET",
             headers: {
@@ -256,7 +255,6 @@ export default {
             },
         })
         .then(async (result)=>{
-          console.log(result.status)
           if(result.status == 204){
             this.displayToast("info","There is no responses for this form yet")
             return;
