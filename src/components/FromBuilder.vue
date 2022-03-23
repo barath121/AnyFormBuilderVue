@@ -139,11 +139,11 @@ export default {
       else this.displayToast("error", "Form must have atleast one page");
     },
     publishForm() {
-      if(this.pages.some(el=>!el.fieldName)){
+      if(this.pages.some(el=>!el.fieldName&&el.fieldName!="Statement")){
         this.displayToast("error", "Please add a field name to every page before publishing");
         return;
       } 
-      if(this.pages.some((el,index)=>this.pages.map(el=>el.fieldName).indexOf(el.fieldName)!=index)){
+      if(this.pages.filter(el=>el.pageType!="Statement").some((el,index)=>this.pages.filter(el=>el.pageType!="Statement").map(el=>el.fieldName).indexOf(el.fieldName)!=index)){
         this.displayToast("error", "All field name should be unique before publishing");
         return;
       } 
