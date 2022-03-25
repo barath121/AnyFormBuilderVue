@@ -2,9 +2,9 @@
   <div
     class="flex flex-col questionpagepreview snap-center rounded justify-center items-center m-auto"
   >
-    <h1 class="text-3xl break-all overflow-auto hidescroll">{{page.question}}{{isRequired()}}</h1>
+    <h1 class="text-3xl break-all overflow-auto hidescroll mb-6">{{page.question}}{{isRequired()}}</h1>
     <input
-      class="w-3/5 questionInput "
+      class="w-3/5 questionInput mb-4"
       v-if="page.pageType == 'Small Text'"
       :name="page.fieldName"
       :maxlength="page.maxCharacters"
@@ -12,7 +12,7 @@
       :required="page.isRequired"
     />
     <textarea
-      class="w-3/5 questionTextinput rounded resize-none p-2"
+      class="w-3/5 questionTextinput rounded resize-none p-2 mb-4"
       v-else-if="page.pageType == 'Large Text'"
       :name="page.fieldName"
       :maxlength="page.maxCharacters"
@@ -38,9 +38,9 @@
         <label class="overflow-auto hidescroll break-all">{{ choice }}</label>
       </div>
     </div>
-    <input type="date" v-else-if="page.pageType == 'Date'" :name="page.fieldName" :id="page.fieldName" :required="page.isRequired"/>
+    <input type="date" v-else-if="page.pageType == 'Date'" :name="page.fieldName" :id="page.fieldName" :required="page.isRequired" class="mb-4"/>
     <input
-      class="w-3/5 fileinput rounded"
+      class="w-3/5 fileinput rounded mb-4"
       type="file"
       v-else-if="page.pageType == 'File'"
       :name="page.fieldName"

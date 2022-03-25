@@ -3,21 +3,21 @@
   <div
     class="h-screen-90 logincard flex flex-col justify-center items-center"
   >
-  <h1 class="text-xl">Forgot Password</h1>
+  <h1 class="text-3xl mb-8">Forgot Password</h1>
+  <div class="width-300">
     <form @submit.prevent="forgotPassword()">
       <div class="flex flex-col">
-        <label>Email:</label>
-        <input type="email" id="email" class="shadow p-1" v-model="email" />
+        <label class="mb-4">Email:</label>
+        <input type="email" id="email" class="shadow p-1 mb-4 rounded" v-model="email" />
       </div>
-      <div class="flex place-content-between my-2">
         <button
-          class="button rounded p-1"
+          class="w-full mainbutton rounded p-1"
           type="submit"
         >
             Submit
         </button>
-      </div>
     </form>
+  </div>
   </div>
 </template>
 <script>

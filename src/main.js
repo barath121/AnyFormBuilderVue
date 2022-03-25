@@ -5,12 +5,12 @@ import './assets/CSS/index.css';
 import '@imengyu/vue3-context-menu/lib/vue3-context-menu.css'
 import ContextMenu from '@imengyu/vue3-context-menu'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import {faSquarePlus  } from '@fortawesome/free-solid-svg-icons'
+import {faCirclePlus ,faSquarePlus} from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import Toast , { POSITION }from "vue-toastification";
 import "vue-toastification/dist/index.css";
 import { vfmPlugin } from 'vue-final-modal'
-library.add(faSquarePlus )
+library.add(faCirclePlus ,faSquarePlus)
 const app =createApp(App)
 app.component('font-awesome-icon', FontAwesomeIcon)
 app.use(ContextMenu)

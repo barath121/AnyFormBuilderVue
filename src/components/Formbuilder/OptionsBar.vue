@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col border h-full w-96">
+  <div class="flex flex-col borderLeft h-full w-96">
     <div class="justify-evenly flex p-1 borderBottom">
       <h1>Options</h1>
     </div>

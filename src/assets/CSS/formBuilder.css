@@ -73,9 +73,10 @@ textarea:focus, input:focus{
 }
 input, textarea{
   outline: #2EE59D ;
-  border:2px solid #2EE59D;
-  background: #2EE59D;
-  color: white !important;
+  border:1px solid #2EE59D;
+  color: #7e7c7e !important;
+  padding: 5px 10px !important;
+  background: none;
 }
 input::placeholder,textarea::placeholder{
     color: #484349;
@@ -83,7 +84,7 @@ input::placeholder,textarea::placeholder{
 
 select {
   outline: #2EE59D ;
-  border:2px solid #2EE59D;
+  border:1px solid #2EE59D;
   background: #2EE59D;
   color: white !important;
 }

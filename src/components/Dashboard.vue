@@ -19,7 +19,7 @@
           </button>
         </div>
       </div>
-      <div v-if="createFormModal" >
+      <div v-if="createFormModal">
         <span class="modal__title">Create Form</span>
         <div class="modal__content flex flex-col">
           <input type="text" class="rounded p-1" v-model="newFormTitle" />
@@ -34,46 +34,63 @@
       </div>
     </vue-final-modal>
   </div>
-  <div class="flex flex-col my-2">
-    <div class="flex borderBottom place-content-between">
+  <div class="px-5 pt-4 pb-2 navbar">
+    <div class="flex place-content-between">
       <div class="ml-2">
         <h1>AnyFormBuilder</h1>
       </div>
       <div class="flex mr-2 place-content-between">
-          <button class="navbuttons rounded ml-2 mb-2" @click="logout()">Logout</button>
+        <button class="buttonalt rounded ml-2 mb-2" @click="logout()">
+          Logout
+        </button>
       </div>
     </div>
   </div>
-  <div class="flex flex-row place-content-evenly p-3 borderBottom">
-    <div>
-      <label for="">Title:</label>
-      <input type="text" class="ml-1 p-1 shadow focus:outline-none" v-model="searchTitle"/>
+  <div class="addForm">
+    <font-awesome-icon
+      icon="circle-plus"
+      class="text-5xl my-auto icon growAnimation"
+      @click="createFormModalBox()"
+    />
+  </div>
+  <div class="flex flex-row items-center justify-center py-8">
+    <div class="mx-4">
+      <!-- <label  for="search">Title:</label> -->
+      <input
+        type="text"
+        name="search"
+        class="width-300 shadow focus:outline-none rounded"
+        v-model="searchTitle"
+      />
     </div>
-    <div>
-      <label for="">Sort By</label>
-      <select class="rounded p-1 ml-1" v-model="sortBy">
+    <div class="mx-4">
+      <!-- <label class="" for="sortby">Sort By</label> -->
+      <select
+        class="rounded selectPadding"
+        v-model="sortBy"
+        name="sortby"
+      >
         <option value="updatedAt">Last Modified</option>
         <option value="createdAt">Created On</option>
         <option value="title">Title</option>
       </select>
     </div>
-    <button class="button rounded" @click="getForms()">Search</button>
+    <div class="mx-4">
+      <button class="button rounded" @click="getForms()">Search</button>
+    </div>
   </div>
   <div class="items-center mx-4">
-    <table class="w-full">
+    <table class="w-full table-auto">
       <thead class="text-left">
         <tr>
           <th>No.</th>
           <th>Title</th>
           <th>Created On</th>
           <th>Last Modified</th>
-          <th><font-awesome-icon
-              icon="square-plus"
-              class="text-2xl my-auto icon growAnimation"
-              @click="createFormModalBox()"
-            /></th>
+          <th>Pages</th>
         </tr>
       </thead>
+      <tbody>
       <tr
         v-for="(form, index) in forms"
         :key="index + form.title"
@@ -81,11 +98,17 @@
       >
         <td>{{ index + 1 }}</td>
         <td>
-          <div class="truncate w-64"><router-link :to="{path : '/formbuilder/'+form._id}">{{form.title}}</router-link></div>
+          <div class="truncate w-64 py-1">
+            <router-link :to="{ path: '/formbuilder/' + form._id }">{{
+              form.title
+            }}</router-link>
+          </div>
         </td>
         <td>{{ toDateWithTime(form.createdAt) }}</td>
         <td>{{ toDateWithTime(form.updatedAt) }}</td>
+        <td>{{ form.savedPages.length }}</td>
       </tr>
+      </tbody>
     </table>
   </div>
 </template>
@@ -106,73 +129,76 @@ export default {
   },
   data() {
     return {
-      isModalActive : false,
+      isModalActive: false,
       renameFormModal: false,
-      createFormModal : false,
-      newFormTitle : "",
+      createFormModal: false,
+      newFormTitle: "",
       currentTitle: "",
       selectedIndex: 0,
       forms: [],
-      searchTitle : "",
-      sortBy : "updatedAt" 
-
+      searchTitle: "",
+      sortBy: "updatedAt",
     };
   },
   methods: {
-    getForms(){
-      fetch(`${ import.meta.env.VITE_API_URL}/form/getforms?sortBy=${this.sortBy}&title=${this.searchTitle}`, {
-            method: "GET",
-            headers: {
+    getForms() {
+      fetch(
+        `${import.meta.env.VITE_API_URL}/form/getforms?sortBy=${
+          this.sortBy
+        }&title=${this.searchTitle}`,
+        {
+          method: "GET",
+          headers: {
             "Content-Type": "application/json",
-            "Authorization" : "Bearer "+localStorage.getItem("userToken"),
-            }
-        }).then(async (result)=>{
-        if(result.status=='401')return;
-        let forms = await result.json();
-        this.forms = forms.userForms
-        }).catch(err=>{
-            this.displayToast("error","Some Internal Error");
-        })
-    },
-    closeModal(){
-      this.renameFormModal = false,
-      this.createFormModal = false,
-      this.isModalActive = false;
-    },
-    createForm(){
-      if(this.newFormTitle.length){
-       let form =  {
-          title: this.newFormTitle,
-          savedPages :[
-            {
-            "fieldName" : "name",
-            "pageType" : "Small Text",
-            "question" : "What is your Question"
-            }
-          ]
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
+          },
         }
-        fetch(`${ import.meta.env.VITE_API_URL}/form/createform`, {
-            method: "POST",
-            headers: {
-            "Content-Type": "application/json",
-            "Authorization" : "Bearer "+localStorage.getItem("userToken"),
+      )
+        .then(async (result) => {
+          if (result.status == "401") return;
+          let forms = await result.json();
+          this.forms = forms.userForms;
+        })
+        .catch((err) => {
+          this.displayToast("error", "Some Internal Error");
+        });
+    },
+    closeModal() {
+      this.isModalActive = false;
+      this.renameFormModal = false;
+      this.createFormModal = false;
+    },
+    createForm() {
+      if (this.newFormTitle.length) {
+        let form = {
+          title: this.newFormTitle,
+          savedPages: [
+            {
+              fieldName: "name",
+              pageType: "Small Text",
+              question: "What is your Question",
             },
-            body: JSON.stringify(form),
-        })
-        .then(async (result)=>{
+          ],
+        };
+        fetch(`${import.meta.env.VITE_API_URL}/form/createform`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
+          },
+          body: JSON.stringify(form),
+        }).then(async (result) => {
           let formCreatedData = await result.json();
-          if(formCreatedData.message == "Form Created Sucessfully"){
-              this.displayToast("success","The Form has been Created");
-              this.getForms();
-              this.createFormModal = false,
-              this.isModalActive = false;
-          }else{
-            this.displayToast("error",formCreatedData.message);
+          if (formCreatedData.message == "Form Created Sucessfully") {
+            this.displayToast("success", "The Form has been Created");
+            this.getForms();
+            (this.createFormModal = false), (this.isModalActive = false);
+          } else {
+            this.displayToast("error", formCreatedData.message);
           }
-        })
-      }
-      else{
-        this.displayToast("warning","Add a title before creating");
+        });
+      } else {
+        this.displayToast("warning", "Add a title before creating");
       }
     },
     toDateWithTime(date) {
@@ -192,85 +218,99 @@ export default {
       this.createFormModal = true;
       this.isModalActive = true;
     },
-    renameFormTitle(){
-      if(this.currentTitle == this.forms[this.selectedIndex].title)
-        this.displayToast("warning","The Form Title is already "+ this.currentTitle)
-      else{
+    renameFormTitle() {
+      if (this.currentTitle == this.forms[this.selectedIndex].title)
+        this.displayToast(
+          "warning",
+          "The Form Title is already " + this.currentTitle
+        );
+      else {
         let body = {
-        _id : this.forms[this.selectedIndex]._id,
-        title: this.currentTitle,
+          _id: this.forms[this.selectedIndex]._id,
+          title: this.currentTitle,
         };
-        fetch(`${ import.meta.env.VITE_API_URL}/form/updateform`, {
-            method: "PATCH",
-            headers: {
+        fetch(`${import.meta.env.VITE_API_URL}/form/updateform`, {
+          method: "PATCH",
+          headers: {
             "Content-Type": "application/json",
-            "Authorization" : "Bearer "+localStorage.getItem("userToken"),
-            },
-            body: JSON.stringify(body),
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
+          },
+          body: JSON.stringify(body),
         })
-        .then(async (result)=>{
-          let formUpdatedData = await result.json();
-          if(formUpdatedData.message == "Form Updated Sucessfully"){
+          .then(async (result) => {
+            let formUpdatedData = await result.json();
+            if (formUpdatedData.message == "Form Updated Sucessfully") {
               this.closeModal();
-              this.displayToast("success","The Form has been renamed")
+              this.displayToast("success", "The Form has been renamed");
               this.forms[this.selectedIndex].title = this.currentTitle;
-          }else{
-            this.displayToast("error",formUpdatedData.message)
-          }
-        }).catch(err=>{
-            this.displayToast("error","Some Internal Error");
-        })
+            } else {
+              this.displayToast("error", formUpdatedData.message);
+            }
+          })
+          .catch((err) => {
+            this.displayToast("error", "Some Internal Error");
+          });
       }
     },
-    deleteForm(index){
-       let body = {
-        _id : this.forms[index]._id,
+    deleteForm(index) {
+      let body = {
+        _id: this.forms[index]._id,
       };
-        fetch(`${ import.meta.env.VITE_API_URL}/form/deleteform`, {
-            method: "DELETE",
-            headers: {
-            "Content-Type": "application/json",
-            "Authorization" : "Bearer "+localStorage.getItem("userToken"),
-            },
-            body: JSON.stringify(body),
-        })
-        .then(async (result)=>{
+      fetch(`${import.meta.env.VITE_API_URL}/form/deleteform`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("userToken"),
+        },
+        body: JSON.stringify(body),
+      })
+        .then(async (result) => {
           let deletedFormData = await result.json();
-          if(deletedFormData.message == "Form Deleted Sucessfully"){
-              this.displayToast("success","The Form has been deleted")
-              this.forms.splice(index,1);
-          }else{
-            this.displayToast("error",deletedFormData.message)
+          if (deletedFormData.message == "Form Deleted Sucessfully") {
+            this.displayToast("success", "The Form has been deleted");
+            this.forms.splice(index, 1);
+          } else {
+            this.displayToast("error", deletedFormData.message);
           }
-        }).catch(err=>{
-            this.displayToast("error","Some Internal Error");
         })
+        .catch((err) => {
+          this.displayToast("error", "Some Internal Error");
+        });
     },
-    getFormResponses(index){
-      fetch(`${ import.meta.env.VITE_API_URL}/form/getformresponses/${this.forms[index]._id}`, {
-            method: "GET",
-            headers: {
+    getFormResponses(index) {
+      fetch(
+        `${import.meta.env.VITE_API_URL}/form/getformresponses/${
+          this.forms[index]._id
+        }`,
+        {
+          method: "GET",
+          headers: {
             "Content-Type": "application/json",
-            "Authorization" : "Bearer "+localStorage.getItem("userToken"),
-            },
-        })
-        .then(async (result)=>{
-          if(result.status == 204){
-            this.displayToast("info","There is no responses for this form yet")
+            Authorization: "Bearer " + localStorage.getItem("userToken"),
+          },
+        }
+      )
+        .then(async (result) => {
+          if (result.status == 204) {
+            this.displayToast(
+              "info",
+              "There is no responses for this form yet"
+            );
             return;
-          }else if(result.status == 200){
-          result.blob().then((xlsxfile) => {
-            var a = document.createElement("a");
-            a.href = window.URL.createObjectURL(xlsxfile);
-            a.download = this.forms[index].title+".xlsx";
-            a.click(); 
-          })
-          }else{
-            this.displayToast("error","Some Internal Error");
+          } else if (result.status == 200) {
+            result.blob().then((xlsxfile) => {
+              var a = document.createElement("a");
+              a.href = window.URL.createObjectURL(xlsxfile);
+              a.download = this.forms[index].title + ".xlsx";
+              a.click();
+            });
+          } else {
+            this.displayToast("error", "Some Internal Error");
           }
-        }).catch(err=>{
-            this.displayToast("error","Some Internal Error");
         })
+        .catch((err) => {
+          this.displayToast("error", "Some Internal Error");
+        });
     },
     onContextMenu(e, index) {
       e.preventDefault();
@@ -287,28 +327,28 @@ export default {
           {
             label: "Delete",
             onClick: () => {
-               this.deleteForm(index);
+              this.deleteForm(index);
             },
           },
           {
-          label: "Get Responses",
-          onClick: () => {
-            this.getFormResponses(index);
-          },
+            label: "Get Responses",
+            onClick: () => {
+              this.getFormResponses(index);
+            },
           },
         ],
       });
     },
-    logout(){
-      localStorage.setItem("userToken",null);
-      this.displayToast("success","User has been logged out.")
+    logout() {
+      localStorage.setItem("userToken", null);
+      this.displayToast("success", "User has been logged out.");
       this.$router.push("/login");
-    }
+    },
   },
-  mounted(){
+  mounted() {
     this.checkIfUserLoggedIn();
-    this.getForms(); 
+    this.getForms();
   },
-  mixins : [ToastMixin,CheckAuthMixin]
+  mixins: [ToastMixin, CheckAuthMixin],
 };
 </script>

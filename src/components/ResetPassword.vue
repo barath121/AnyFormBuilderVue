@@ -3,27 +3,27 @@
   <div
     class="h-screen-90 logincard flex flex-col justify-center items-center w-screen"
   >
-    <h1 class="text-xl">Reset Password</h1>
+    <h1 class="text-3xl mb-8">Reset Password</h1>
+    <div class="width-300">
     <form @submit.prevent="resetPassword()">
       <div class="flex flex-col">
-        <label>New Password:</label>
-        <input type="password" class="shadow p-1" minlength="8" v-model="password" />
+        <label class="mb-4">New Password:</label>
+        <input type="password" class="shadow p-1 mb-8 rounded" minlength="8" v-model="password" />
       </div>
       <div class="flex flex-col">
-        <label>Confirm Password:</label>
-        <input type="password" class="shadow p-1"  minlength="8" v-model="confirmpassword" />
+        <label class="mb-4">Confirm Password:</label>
+        <input type="password" class="shadow p-1 mb-8 rounded"  minlength="8" v-model="confirmpassword" />
       </div>
-      <div class="flex place-content-between my-2">
         <button
-          class="button rounded p-1"
+          class="w-full mainbutton rounded p-1"
           id="loginbtn"
           type="submit"
           @click="login"
         >
           Change Password
         </button>
-      </div>
     </form>
+    </div>
   </div>
 </template>
 <script>

@@ -2,7 +2,7 @@
   <div class="flex flex-col h-screen">
     <Navbar />
     <div class="flex flex-row h-full">
-      <div class="flex border" id="formPagesListHolder">
+      <div class="flex borderRight" id="formPagesListHolder">
         <div class="flex flex-col">
           <div class="flex text-center justify-between p-2 borderBottom">
             <h1>Questions</h1>
@@ -27,7 +27,7 @@
         </div>
       </div>
       <div
-        class="h-full borderTop colorWhite basis-11/12 overflow-y-scroll snap-y snap-mandatory hidescroll borderBottom"
+        class="h-full  colorWhite basis-11/12 overflow-y-scroll snap-y snap-mandatory hidescroll "
         id="formPagesHolder"
       >
         <Formpage :pages="pages" :selectedpage="selectedpage" v-if="isLoaded" />

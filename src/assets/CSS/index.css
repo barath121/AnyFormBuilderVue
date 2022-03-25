@@ -8,36 +8,46 @@ html {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
+.navbar{
+  color: white;
+  background: #2EE59D;
+}
 .navbuttons:hover {
   box-shadow: 5px 5px 5px rgba(46, 229, 157, 0.4);
 }
 .border{
-  border: 1px solid #484349 !important;
+  border: 1px solid #c0bec1 !important;
 }
 .borderTop {
-  border-top: 1px solid #484349;
+  border-top: 1px solid #c0bec1;
 }
 .borderBottom {
-  border-bottom: 1px solid #484349;
+  border-bottom: 1px solid #c0bec1;
 }
 .borderLeft {
-  border-left: 1px solid #484349;
+  border-left: 1px solid #c0bec1;
 }
 .borderRight {
-  border-right: 1px solid #484349;
+  border-right: 1px solid #c0bec1;
 }
 .button {
   background: #2EE59D !important  ;
   color: white;
   width: inherit;
-  padding: 0.3em 1em;
+  padding: 0.3rem 2rem;
+  box-sizing: border-box;
+  font-size: 1em;
+}
+.mainbutton {
+  background: #2EE59D !important  ;
+  color: white;
+  padding: 0.3rem 2rem;
   box-sizing: border-box;
   font-size: 1em;
 }
 .button:hover{
   box-shadow: 5px 5px 5px rgba(46, 229, 157, 0.4);
 }
-
 .buttonalt {
   background: white !important  ;
   color: #2EE59D;
@@ -45,6 +55,9 @@ html {
   padding: 0.3em 1em;
   box-sizing: border-box;
   font-size: 1em;
+}
+.buttonalt:hover{
+ transform: scale(1.1);
 }
 .growAnimation:hover{
   animation: growAnimation .1s forwards; 
@@ -68,4 +81,15 @@ html {
 }
 .h-screen-94{
   height: 93.85vh;
+}
+.addForm{
+  position: fixed;
+  bottom: 5%;
+  right: 5%;
+}
+.width-300{
+  width: 300px;
+}
+.selectPadding{
+  padding: 0.3rem 0.8rem;
 }

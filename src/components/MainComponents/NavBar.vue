@@ -1,12 +1,12 @@
 <template>
-<div class="borderBottom">
+<div class="px-5 py-2 navbar">
     <div class="flex place-content-between h-8 m-2">
             <div class="">
                     <h1>AnyFormBuilder</h1>
             </div>
             <div class="flex justify-end">
-                <router-link to="/login" class="text-green-500 mx-2">Login</router-link>
-                <router-link to="/register" class="text-green-500 mx-2">Register</router-link>
+                <router-link to="/login" class="mx-4">Login</router-link>
+                <router-link to="/register" class="mx-4">Register</router-link>
             </div>
         </div>
 </div>
