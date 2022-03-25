@@ -142,6 +142,14 @@ export default {
         this.displayToast("error", "Please add a field name to every page before publishing");
         return;
       } 
+      if(this.pages.some(el=>!el.question)){
+        this.displayToast("error", "Please add a question to every page before publishing");
+        return;
+      } 
+      if(this.pages.filter(el=>el.pageType=="Check Box"||el.pageType=="Radio Button").some(el=>el.choices.length==0)){
+        this.displayToast("error", "There should be atleast one choice in Check Box and Radio Buttons");
+        return;
+      } 
       if(this.pages.filter(el=>el.pageType!="Statement").some((el,index)=>this.pages.filter(el=>el.pageType!="Statement").map(el=>el.fieldName).indexOf(el.fieldName)!=index)){
         this.displayToast("error", "All field name should be unique before publishing");
         return;

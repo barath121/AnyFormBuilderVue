@@ -110,6 +110,10 @@ export default {
         this.choices = ""
         this.changeChoices();
       }
+       if(this.pageType=="Statement"){
+        this.fieldName = ""
+        this.changeFieldName();
+      }
       this.$emit("changePageType",this.pageType);
     },
     changeQuestion() {
