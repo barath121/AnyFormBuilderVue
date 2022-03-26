@@ -53,9 +53,8 @@
       @click="createFormModalBox()"
     />
   </div>
-  <div class="flex flex-row items-center justify-center py-8">
-    <div class="mx-4">
-      <!-- <label  for="search">Title:</label> -->
+  <div class="flex md:flex-row flex-col items-center justify-center py-8">
+    <div class="mx-4 my-2">
       <input
         type="text"
         name="search"
@@ -63,8 +62,7 @@
         v-model="searchTitle"
       />
     </div>
-    <div class="mx-4">
-      <!-- <label class="" for="sortby">Sort By</label> -->
+    <div class="mx-4 my-4">
       <select
         class="rounded selectPadding"
         v-model="sortBy"
@@ -75,7 +73,7 @@
         <option value="title">Title</option>
       </select>
     </div>
-    <div class="mx-4">
+    <div class="mx-4 my-4">
       <button class="button rounded" @click="getForms()">Search</button>
     </div>
   </div>
@@ -98,7 +96,7 @@
       >
         <td>{{ index + 1 }}</td>
         <td>
-          <div class="truncate w-64 py-1">
+          <div class="truncate w-16 py-1">
             <router-link :to="{ path: '/formbuilder/' + form._id }">{{
               form.title
             }}</router-link>
