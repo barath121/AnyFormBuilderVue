@@ -8,11 +8,11 @@
     <form @submit.prevent="resetPassword()">
       <div class="flex flex-col">
         <label class="mb-4">New Password:</label>
-        <input type="password" class="shadow p-1 mb-8 rounded" minlength="8" v-model="password" />
+        <input type="password" class="shadow p-1 mb-8 rounded inputBorder" minlength="8" v-model="password" />
       </div>
       <div class="flex flex-col">
         <label class="mb-4">Confirm Password:</label>
-        <input type="password" class="shadow p-1 mb-8 rounded"  minlength="8" v-model="confirmpassword" />
+        <input type="password" class="shadow p-1 mb-8 rounded inputBorder"  minlength="8" v-model="confirmpassword" />
       </div>
         <button
           class="w-full mainbutton rounded p-1"

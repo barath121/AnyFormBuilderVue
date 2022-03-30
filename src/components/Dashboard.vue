@@ -9,7 +9,7 @@
       <div v-if="renameFormModal">
         <span class="modal__title">Rename Form Title</span>
         <div class="modal__content flex flex-col">
-          <input type="text" class="rounded p-1" v-model="currentTitle" />
+          <input type="text" class="rounded p-1 inputBorder" v-model="currentTitle" />
           <button
             type="button"
             class="button rounded my-2"
@@ -22,7 +22,7 @@
       <div v-if="createFormModal">
         <span class="modal__title">Create Form</span>
         <div class="modal__content flex flex-col">
-          <input type="text" class="rounded p-1" v-model="newFormTitle" />
+          <input type="text" class="rounded p-1 inputBorder" v-model="newFormTitle" />
           <button
             type="button"
             class="button rounded my-2"
@@ -58,7 +58,7 @@
       <input
         type="text"
         name="search"
-        class="width-300 shadow focus:outline-none rounded"
+        class="width-300 shadow focus:outline-none rounded inputBorder"
         v-model="searchTitle"
       />
     </div>

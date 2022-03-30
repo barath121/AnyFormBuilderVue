@@ -62,18 +62,17 @@ color: white;
 .questionpagepreview{
   height: 100vh;
   box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-  background: #2EE59D;
-}
-.questionpagepreview{
-  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
-  background: #2EE59D;
+  background: rgba(46, 229, 157, 0.6);
 }
 textarea:focus, input:focus{
   outline: none;
 }
+.inputBorder {
+  border:1px solid #2EE59D;
+
+}
 input, textarea{
   outline: #2EE59D ;
-  border:1px solid #2EE59D;
   color: #7e7c7e !important;
   padding: 5px 10px !important;
   background: none;

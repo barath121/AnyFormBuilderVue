@@ -8,7 +8,7 @@
     <form @submit.prevent="forgotPassword()">
       <div class="flex flex-col">
         <label class="mb-4">Email:</label>
-        <input type="email" id="email" class="shadow p-1 mb-4 rounded" v-model="email" />
+        <input type="email" id="email" class="shadow p-1 mb-4 rounded inputBorder" v-model="email" />
       </div>
         <button
           class="w-full mainbutton rounded p-1"

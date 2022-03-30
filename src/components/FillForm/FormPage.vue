@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col questionpagepreview snap-center rounded justify-center items-center m-auto"
+    class="flex flex-col questionpagepreview leafbackground snap-center rounded justify-center items-center m-auto"
   >
     <h1 class="text-3xl break-all overflow-auto hidescroll mb-6">{{page.question}}{{isRequired()}}</h1>
     <input

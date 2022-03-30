@@ -6,11 +6,11 @@
     <form class="max-w-xs">
       <div class="flex flex-col">
         <label class="mb-2">Username:</label>
-        <input class="shadow p-1 rounded mb-4" id="username" v-model="username" />
+        <input class="shadow p-1 rounded mb-4 inputBorder" id="username" v-model="username" />
       </div>
       <div class="flex flex-col">
         <label class="mb-2">Email:</label>
-        <input class="shadow p-1 rounded mb-4" 
+        <input class="shadow p-1 rounded mb-4 inputBorder" 
         id="email" 
         v-model="email" />
       </div>
@@ -18,25 +18,29 @@
         <label class="mb-2">Password:</label>
         <input
           type="password"
-          class="shadow p-1 rounded mb-4"
+          class="shadow p-1 rounded mb-4 inputBorder"
           id="password"
           v-model="password"
+          minlength="8"
+          maxlength="24"
         />
       </div>
       <div class="flex flex-col">
         <label class="mb-2">Confirm Password:</label>
         <input
           type="password"
-          class="shadow p-1 rounded mb-4"
+          class="shadow p-1 rounded mb-4 inputBorder"
           id="confirmpassword"
           v-model="confirmPassword"
+          minlength="8"
+          maxlength="24"
         />
       </div>
       <button
         class="w-full mainbutton rounded p-1 mb-4"
-        type="button"
+        type="submut"
         id="registerbutton"
-        @click="register()"
+        @submit.prevent="register()"
       >
         Register
       </button>

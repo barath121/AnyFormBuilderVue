@@ -93,3 +93,7 @@ html {
 .selectPadding{
   padding: 0.3rem 0.8rem;
 }
+.leafbackground{
+  
+background-image: linear-gradient(rgba(46, 229, 157, 0.6), rgba(46, 229, 157, 0.6)),url('./../leaves.png');;
+}

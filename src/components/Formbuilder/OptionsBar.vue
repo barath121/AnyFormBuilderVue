@@ -19,7 +19,7 @@
        <div class="flex flex-col p-2 borderBottom"  v-if="pageType!='Statement'">
         <label>Field name</label>
         <input
-          class="w-full rounded p-1 resize-none"
+          class="w-full rounded p-1 resize-none inputBorder"
           placeholder="Field Name"
           v-model="fieldName"
           @input="changeFieldName"
@@ -29,7 +29,7 @@
       <div class="flex flex-col p-2 borderBottom">
         <label>Question</label>
         <textarea
-          class="w-full rounded p-1 resize-none"
+          class="w-full rounded p-1 resize-none inputBorder"
           placeholder="Question"
           v-model="question"
           @input="changeQuestion"
@@ -38,7 +38,7 @@
       <div class="flex flex-col p-2 borderBottom" v-if="pageType=='Check Box'||pageType=='Radio Button'">
         <label>Choices</label>
         <textarea
-          class="w-full rounded p-1 resize-none"
+          class="w-full rounded p-1 resize-none inputBorder"
           placeholder="Add Choices Separated By Comma"
           v-model="choices"
           @input="changeChoices"
@@ -72,7 +72,7 @@
           ></label>
         </div>
         <input
-          class="w-full rounded p-1"
+          class="w-full rounded p-1 inputBorder"
           placeholder="Number"
           type="number"
           min="1"
