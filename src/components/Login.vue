@@ -3,7 +3,7 @@
   <div class="h-screen-90 logincard flex flex-col justify-center items-center">
     <h1 class="text-3xl mb-8">Login</h1>
     <div class="w-300">
-      <form>
+      <form @submit.prevent="login">
         <div class="flex flex-col">
           <label class="mb-2">Username:</label>
           <input
@@ -27,7 +27,6 @@
             class="w-full mainbutton rounded p-1 mb-4"
             id="loginbtn"
             type="submit"
-            @submit.prevent="login()"
           >
             Login
           </button>

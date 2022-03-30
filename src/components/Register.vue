@@ -3,7 +3,7 @@
   <div class="h-screen-90 logincard flex flex-col justify-center items-center">
     <h1 class="text-3xl mb-8">Register</h1>
     <div class="width-300">
-    <form class="max-w-xs">
+    <form class="max-w-xs" @submit.prevent="register">
       <div class="flex flex-col">
         <label class="mb-2">Username:</label>
         <input class="shadow p-1 rounded mb-4 inputBorder" id="username" v-model="username" />
@@ -40,7 +40,6 @@
         class="w-full mainbutton rounded p-1 mb-4"
         type="submut"
         id="registerbutton"
-        @submit.prevent="register()"
       >
         Register
       </button>
