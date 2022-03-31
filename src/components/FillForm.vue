@@ -1,4 +1,8 @@
 <template>
+<div class="vld-parent">
+        <loading v-model:active="isLoading"
+                 :is-full-page="true"/>
+</div>
 <form @submit.prevent="submitResponse()" enctype="multipart/form-data">
     <div class="borderTop colorWhite h-screen overflow-y-scroll snap-y snap-mandatory" v-if="pages.length&&!formFilled">
         <div v-for="(page,index) in pages" :key="page.id">
@@ -21,10 +25,13 @@
 <script>
 import Formpage from "./FillForm/FormPage.vue";
 import ToastMixin from "./../mixins/toast.js";
+import Loading from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/vue-loading.css';
 export default {
   name: "FillForm",
   components: {
-    Formpage
+    Formpage,
+    Loading
   },
   props: {
     page : {
@@ -40,12 +47,19 @@ export default {
     return {
       pages :[],
       formFilled : false,
+      isLoading: false,
     };
   },
   methods: {
+      startLoader() {
+        this.isLoading = true;
+        setTimeout(() => {
+            this.isLoading = false
+        }, 5000)
+      },
       submitResponse(){
           const responseData  = new FormData();
-
+          this.startLoader();
           this.pages.forEach(page=>{
               if(page.pageType=="Statement")return;
               let inputValue = document.getElementsByName(page.fieldName)
@@ -74,14 +88,18 @@ export default {
         if(result.status==200){
         this.formFilled = true;
         localStorage[this.$route.params.id+"FilledForm"] = true;
+        this.isLoading = false;
         }else if(result.status==413){
           this.displayToast("error", "File Size too Large");
+          this.isLoading = false;
         }else{
           this.displayToast("error", "Some Internal Error");
+          this.isLoading = false;
         }
         })
         .catch((err) => {
           this.displayToast("error", "Some Internal Error");
+          this.isLoading = false;
         });
       },
       getPages() {
